@@ -29,7 +29,6 @@ export class App extends React.Component {
     this.setState(prevState => ({
       ...prevState,
       page: prevState.page + 1,
-      loading: true,
     }));
   };
 
@@ -66,12 +65,12 @@ export class App extends React.Component {
               { theme: 'colored' }
             );
           } else {
-            this.setState({
-              picturesData: [...this.state.picturesData, ...response.data.hits],
+            this.setState(prevState => ({
+              picturesData: [...prevState.picturesData, ...response.data.hits],
               totalPages: Math.ceil(
                 response.data.totalHits / response.data.hits.length
               ),
-            });
+            }));
 
             if (this.state.page === 1) {
               toast.info(
@@ -106,8 +105,9 @@ export class App extends React.Component {
           <Modal
             onBackdrop={this.handleBackdrop}
             onKeyDown={this.handleKeyDown}
-            imageUrl={this.state.clickedImg}
-          />
+          >
+            {this.state.clickedImg}
+          </Modal>
         )}
       </div>
     );

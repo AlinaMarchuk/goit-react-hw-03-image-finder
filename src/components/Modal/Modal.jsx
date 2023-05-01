@@ -11,12 +11,12 @@ class Modal extends React.Component {
   }
 
   render() {
-    const { imageUrl, onBackdrop } = this.props;
+    const { onBackdrop, children } = this.props;
 
     return (
       <div className={styles.overlay} onClick={onBackdrop}>
         <div className={styles.modal}>
-          <img src={imageUrl} alt={imageUrl} />
+          <img src={children} alt={children} />
         </div>
       </div>
     );
@@ -25,8 +25,8 @@ class Modal extends React.Component {
 
 Modal.propTypes = {
   onKeyDown: PropTypes.func.isRequired,
-  imageUrl: PropTypes.string.isRequired,
   onBackdrop: PropTypes.func.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 export default Modal;
